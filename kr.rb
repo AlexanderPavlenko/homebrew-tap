@@ -30,7 +30,7 @@ class Kr < Formula
   def install
     ENV["GOPATH"] = buildpath/"GOPATH"
     ENV["GOOS"] = "darwin"
-    ENV["GOARCH"] = Hardware::CPU.is_64_bit? ? "amd64" : "386"
+    ENV["GOARCH"] = Hardware::CPU.is_64_bit? ? (Hardware::CPU.arm? ? "arm64" : "amd64") : "386"
 
     dir = buildpath/"GOPATH/src/github.com/kryptco/kr"
     dir.install buildpath.children
